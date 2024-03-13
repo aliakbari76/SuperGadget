@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- Add your specific content here -->
-    <h1> HW! </h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for currency, price in price_dic.items %}
+      <tr>
+        <td>{{ currency }}</td>
+        <td>{{ price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
 {% endblock %}

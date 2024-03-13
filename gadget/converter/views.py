@@ -1,9 +1,19 @@
 from django.shortcuts import render
 from .forms import MeterConversionForm , WeightConversationForm
-from .apps import convertMetricType, convertWeightType
+from .apps import convertMetricType, convertWeightType , liveGoldPrice , liveCryptoPrice
 # Create your views here.
 def index(request):
-    return render(request , 'index.html')
+    gold_price = liveGoldPrice()
+    print("gold price is : " + str(gold_price))
+    btc_price , etherium_price = liveCryptoPrice()
+    print("btc price is : "+str(btc_price))
+    print("etherium price is : "+str(etherium_price))
+    
+    price_dic = {"gold"     : gold_price ,
+                 "btc"      : btc_price  ,
+                 "etherium" : etherium_price}
+    
+    return render(request , 'index.html' , {'price_dic' : price_dic})
 
 def metrics(request):
     if request.method =='POST':
@@ -37,3 +47,16 @@ def weightConversion(request):
                 'result_of_Weight':result_of_weight})
             
     return render(request , 'weightConversation.html', {'form':WeightConversationForm})
+
+
+def livePrices(request):
+    gold_price = liveGoldPrice()
+    print("gold price is : " + str(gold_price))
+    btc_price , etherium_price = liveCryptoPrice()
+    print("btc price is : "+str(btc_price))
+    print("etherium price is : "+str(etherium_price))
+    price_dic = {"gold"     : gold_price ,
+                 "btc"      : btc_price  ,
+                 "etherium" : etherium_price}
+
+    
