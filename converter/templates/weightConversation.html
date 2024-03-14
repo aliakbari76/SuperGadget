@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Conversion Form</h2>
+<form method="post" action="{% url 'weights' %}">
+  {% csrf_token %}
+
+  <div class="input-group mb-3">{{ form.input_weight_type.label_tag }}</div>
+  <div class="input-group mb-3">{{ form.input_weight_type }}</div>
+  <div class="input-group mb-3">{{ form.output_weight_type.label_tag }}</div>
+  <div class="input-group mb-3">{{ form.output_weight_type }}</div>
+  <div class="input-group mb-3">{{ form.text_input.label_tag }}</div>
+  <div class="input-group mb-3">{{ form.text_input }}</div>
+  <button type="submit" class="btn btn-primary">Convert</button>
+</form>
+
+<div id="result" class="input-group mb-3">{{result_of_Weight}}</div>
+{% endblock %}
